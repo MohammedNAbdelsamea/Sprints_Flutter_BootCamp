@@ -1,16 +1,21 @@
-# shopping_app
+# Shopping App
 
-A new Flutter project.
+A responsive Flutter shopping application featuring product displays, hot offers, and a clean user interface.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Product Showcase**
+  - Dynamic product grid display
+  - Horizontal page view for featured products
+  - Add to cart functionality with visual feedback
 
-A few resources to get you started if this is your first Flutter project:
+- **Hot Offers Section**
+  - Horizontal scrollable offers list
+  - Percentage-based discounts
+  - Circular product images with custom styling
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Responsive Design**
+  - Adapts to different screen sizes
+  - Consistent layout across devices
+  - Optimized for both portrait and landscape modes
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

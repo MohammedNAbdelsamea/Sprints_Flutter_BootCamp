@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/widgets/shopping_home.dart';
+import 'package:shopping_app/screens/shopping_home.dart';
+import 'package:shopping_app/screens/sign_up_page.dart';
 
 import 'const.dart';
 
@@ -18,9 +19,9 @@ class ShoppingApp extends StatelessWidget {
       title: 'Shopping App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Hamdy',
+        fontFamily: 'Suwannaphum',
       ),
-      home: const ShoppingHomePage(),
+      home: const SignUpPage(),
     );
   }
 }

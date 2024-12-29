@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/widgets/custom_app_bar.dart';
 import 'package:shopping_app/widgets/product_grid.dart';
 import '../const.dart';
-import 'hot_offers.dart';
+import '../widgets/hot_offers.dart';
 
 // Configuration class for ShoppingHomePage
 class ShoppingHomeConfig {
@@ -82,7 +83,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
 
     return Scaffold(
       backgroundColor: ShoppingHomeConfig.backgroundColor,
-      appBar: _buildAppBar(),
+      appBar: const CustomAppBar(title: 'Shopping App',),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,20 +121,8 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
     );
   }
 
-  // Helper method to build AppBar
-  PreferredSizeWidget _buildAppBar() {
-    return AppBar(
-      backgroundColor: ShoppingHomeConfig.appBarColor,
-      title: const Text(
-        'Shopping App',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-      centerTitle: true,
-    );
-  }
+
+
 
   // Helper method to build section titles
   Widget _buildSectionTitle(String title, double fontSize) {

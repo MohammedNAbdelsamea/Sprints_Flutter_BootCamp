@@ -44,6 +44,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: appBarColor,
           padding: EdgeInsets.symmetric(vertical: verticalPadding),
           shape: RoundedRectangleBorder(
+            // Responsive border radius : min 8, max 16
             borderRadius: BorderRadius.circular(borderRadius.clamp(8.0, 16.0)),
           ),
           elevation: 3,

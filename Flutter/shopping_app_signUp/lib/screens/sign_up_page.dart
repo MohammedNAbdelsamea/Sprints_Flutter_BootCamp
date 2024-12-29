@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/const.dart';
-import 'package:shopping_app/main.dart';
+
 import 'package:shopping_app/screens/shopping_home.dart';
 import '../widgets/custom_app_bar.dart';
 
@@ -39,6 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
         return CustomDialog(
           message: 'Account created successfully !',
           onPressed: () {
+            // Navigate to ShoppingHomePage when dialog button is pressed
             Navigator.of(context).pop();
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const ShoppingHomePage()));
@@ -68,7 +69,9 @@ class _SignUpPageState extends State<SignUpPage> {
     final buttonHeight = screenHeight * 0.08; // 8% of screen height
 
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar:
+      // CustomAppBar widget with title 'Sign Up' and no back button
+      const CustomAppBar(
         title: 'Sign Up',
         showBackButton: false,
       ),
@@ -92,6 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 SizedBox(height: verticalSpacing * 1.5),
+                //CustomTextField widget for Full Name
                 CustomTextField(
                   labelText: 'Full Name',
                   hintText: 'Enter your full name',
@@ -101,6 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   keyboardType: TextInputType.name,
                 ),
                 SizedBox(height: verticalSpacing),
+                //CustomTextField widget for Email
                 CustomTextField(
                   labelText: 'Email',
                   hintText: 'Enter your email',
@@ -110,6 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: verticalSpacing),
+                //CustomTextField widget for Password
                 CustomTextField(
                   labelText: 'Password',
                   hintText: 'Enter your password',
@@ -119,6 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   isPassword: true,
                 ),
                 SizedBox(height: verticalSpacing),
+                //CustomTextField widget for Confirm Password
                 CustomTextField(
                   labelText: 'Confirm Password',
                   hintText: 'Confirm your password',
@@ -130,6 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   textInputAction: TextInputAction.done,
                 ),
                 SizedBox(height: verticalSpacing * 2),
+                //CustomButton widget for Sign Up
                 CustomButton(
                   text: 'Sign Up',
                   fontSize: screenWidth * 0.04, // 4% of screen width

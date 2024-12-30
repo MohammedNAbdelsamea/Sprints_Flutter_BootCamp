@@ -1,8 +1,23 @@
 # Shopping App
 
-A responsive Flutter shopping application featuring secure user authentication, product displays, hot offers, and a clean user interface with smooth animations.
+A responsive Flutter shopping application featuring secure user authentication, product displays, hot offers, multilingual support, and a clean user interface with smooth animations.
 
 ## Features
+
+### Localization
+- **Multi-Language Support**
+  - Easy language switching between English and Arabic
+  - Real-time UI updates with translations
+  - Persistent language selection
+  - RTL (Right-to-Left) support for Arabic
+  - Smooth transition between languages
+
+- **Translation Implementation**
+  - Uses easy_localization package
+  - JSON-based translation files
+  - Centralized translation management
+  - Context-aware language switching
+  - Automatic text direction handling
 
 ### Authentication
 - **Sign Up System**
@@ -44,13 +59,15 @@ A responsive Flutter shopping application featuring secure user authentication, 
   - Adapts to different screen sizes
   - Consistent layout across devices
   - Optimized for both portrait and landscape modes
+  - RTL layout support for Arabic
 
 - **Custom Components**
   - Reusable text form fields with validation
   - Custom styled buttons
   - Success dialogs with animations
-  - Responsive app bar with contextual navigation
+  - Responsive app bar with language switcher
   - Animated page transitions
+  - Localized text components
 
 ### Navigation Flow with Animations
 1. Sign Up Page (initial state)
@@ -70,3 +87,22 @@ A responsive Flutter shopping application featuring secure user authentication, 
   - Curved easing functions
   - Coordinated transitions
   - State management for animations
+
+### Localization Implementation
+- **Configuration**
+  - easy_localization package integration
+  - Supported languages: English (en) and Arabic (ar)
+  - JSON-based translation files
+  - Fallback locale handling
+
+- **Translation Structure**
+  - Organized JSON translation files
+  - Separate keys for different sections
+  - Context-aware translations
+  - RTL support for Arabic
+
+- **Language Switching**
+  - Real-time language toggle
+  - Persistent language selection
+  - Automatic UI direction adjustment
+  - Smooth transition between languages

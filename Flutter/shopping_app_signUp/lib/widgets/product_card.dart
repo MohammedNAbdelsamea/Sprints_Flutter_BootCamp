@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../const.dart';
@@ -79,7 +80,7 @@ class ProductCard extends StatelessWidget {
                   SnackBar(
                     backgroundColor: Colors.green,
                     content: Text(
-                      'Item added to the cart!',
+                      'item_added_to_cart'.tr(),
                       style: TextStyle(
                         fontSize: fontSize,
                         color: Colors.white,

@@ -1,30 +1,25 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/const.dart';
 import 'circle_offer_image.dart';
 
-// Configuration class for HotOffers
+// Configuration class for HotOffers widget containing responsive ratios and styling
 class HotOffersConfig {
-  // Layout configurations
-  static const double containerHeightRatio = 0.15;
-  static const double containerWidthRatio = 0.8;
-
-  // Spacing configurations
-  static const double horizontalMarginRatio = 0.02;
-  static const double elementSpacingRatio = 0.04;
-
-  // Text configurations
-  static const double fontSizeRatio = 0.04;
-
-  // Colors
-  static const Color cardColor = primaryColor;
-  static const double cardElevation = 2.0;
+  static const double containerHeightRatio = 0.15;        // Height ratio relative to screen height
+  static const double containerWidthRatio = 0.8;          // Width ratio relative to screen width
+  static const double horizontalMarginRatio = 0.02;       // Margin ratio for horizontal spacing
+  static const double elementSpacingRatio = 0.03;         // Spacing ratio between elements
+  static const double fontSizeRatio = 0.04;               // Font size ratio relative to screen width
+  static const Color cardColor = primaryColor;            // Card background color
+  static const double cardElevation = 2.0;               // Card shadow elevation
 }
 
-class HotOffers extends StatelessWidget {
-  // Lists to hold offer data
-  final List<String> offersImages;
-  final List<String> offersNames;
-  final List<String> offersValues;
+// StatefulWidget for displaying hot offers in a horizontal scrollable list
+class HotOffers extends StatefulWidget {
+  // Lists containing offer data
+  final List<String> offersImages;    // Paths to offer images
+  final List<String> offersNames;     // Translated offer names
+  final List<String> offersValues;    // Translated offer values (e.g., "50% OFF")
 
   const HotOffers({
     super.key,
@@ -34,8 +29,13 @@ class HotOffers extends StatelessWidget {
   });
 
   @override
+  _HotOffersState createState() => _HotOffersState();
+}
+
+class _HotOffersState extends State<HotOffers> {
+  @override
   Widget build(BuildContext context) {
-    // Get screen dimensions
+    // Get screen dimensions for responsive layout
     final Size screenSize = MediaQuery.of(context).size;
     final double screenWidth = screenSize.width;
     final double screenHeight = screenSize.height;
@@ -47,12 +47,13 @@ class HotOffers extends StatelessWidget {
     final double elementSpacing = screenWidth * HotOffersConfig.elementSpacingRatio;
     final double fontSize = screenWidth * HotOffersConfig.fontSizeRatio;
 
+    // Main container for horizontal scrolling list
     return SizedBox(
       height: containerHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemCount: offersImages.length,
+        physics: const BouncingScrollPhysics(),  // Bouncing effect when scrolling
+        itemCount: widget.offersImages.length,
         itemBuilder: (context, index) {
           return _buildOfferCard(
             context: context,
@@ -87,35 +88,35 @@ class HotOffers extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Left side: Image and Name
+              // Left side of the card (image and name)
               Expanded(
                 flex: 3,
                 child: Row(
                   children: [
+                    // Circular offer image
                     CircularOfferImage(
-                      imagePath: offersImages[index],
+                      imagePath: widget.offersImages[index],
                     ),
                     SizedBox(width: elementSpacing),
+                    // Offer name with overflow handling
                     Flexible(
                       child: Text(
-                        offersNames[index],
+                        widget.offersNames[index],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: fontSize,
-                          color: Colors.white
+                          color: Colors.white,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
                 ),
               ),
-
-              // Right side: Offer Value
+              // Right side of the card (offer value)
               Expanded(
                 flex: 2,
                 child: Text(
-                  offersValues[index],
+                  widget.offersValues[index],
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: fontSize,

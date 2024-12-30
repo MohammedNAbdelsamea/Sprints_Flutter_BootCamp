@@ -1,23 +1,24 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/widgets/custom_app_bar.dart';
 import 'package:shopping_app/widgets/product_grid.dart';
 import '../const.dart';
 import '../widgets/hot_offers.dart';
 
-// Configuration class for ShoppingHomePage
+// Configuration class containing static values for the ShoppingHomePage
 class ShoppingHomeConfig {
-  // Colors
+  // Colors configuration
   static const Color backgroundColor = Color(0xfff6f6f6);
   static const Color appBarColor = Color(0xff593db9);
   static const Color textColor = Colors.black;
 
-  // Sizes
-  static const double titleFontSizeRatio = 0.06;
-  static const double pageViewHeightRatio = 0.3;
-  static const double sectionSpacingRatio = 0.025;
-  static const double bottomSpacingRatio = 0.05;
+  // Responsive size ratios
+  static const double titleFontSizeRatio = 0.06;      // Title font size relative to screen width
+  static const double pageViewHeightRatio = 0.3;      // PageView height relative to screen height
+  static const double sectionSpacingRatio = 0.025;    // Spacing between sections
+  static const double bottomSpacingRatio = 0.05;      // Bottom padding ratio
 
-  // Padding
+  // Fixed padding values
   static const double sectionPadding = 16.0;
 }
 
@@ -29,7 +30,7 @@ class ShoppingHomePage extends StatefulWidget {
 }
 
 class _ShoppingHomePageState extends State<ShoppingHomePage> {
-  // Product data
+  // Static image paths for products
   final List<String> productImages = [
     'assets/images/camera2.jpg',
     'assets/images/shoes.jpg',
@@ -37,22 +38,12 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
     'assets/images/perfume.jpg',
   ];
 
-  final List<String> productsNames = [
-    'Camera',
-    'Shoes',
-    'Watch',
-    'Perfume',
-  ];
+  // Lists that will hold translated strings
+  late List<String> productsNames;    // Product names in current language
+  late List<String> offersNames;      // Offer names in current language
+  late List<String> offersValues;     // Offer values in current language
 
-  // Offers data
-  final List<String> offersNames = [
-    'Bag',
-    'Glass',
-    'Hat',
-    'Head Phone',
-    'Necktie',
-  ];
-
+  // Static image paths for offers
   final List<String> offersImages = [
     'assets/images/bag.jpg',
     'assets/images/glass.jpg',
@@ -61,59 +52,68 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
     'assets/images/Necktie.jpg',
   ];
 
-  final List<String> offersValues = [
-    '50% off',
-    '30% off',
-    '15% off',
-    '23% off',
-    '46% off',
-  ];
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateTranslations();  // Update translations when dependencies change (e.g., locale)
+  }
+
+  // Method to update all translated strings
+  void _updateTranslations() {
+    // Translate product names
+    productsNames = [
+      'camera',
+      'shoes',
+      'watch',
+      'perfume',
+    ].map((e) => e.tr()).toList();
+
+    // Translate offer names
+    offersNames = [
+      'bag',
+      'glass',
+      'hat',
+      'head_phone',
+      'necktie',
+    ].map((e) => e.tr()).toList();
+
+    // Create list of translated offer values
+    offersValues = List.filled(5, '50%_off'.tr());
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions
+    // Get screen dimensions for responsive layout
     final Size screenSize = MediaQuery.of(context).size;
     final double screenHeight = screenSize.height;
     final double screenWidth = screenSize.width;
 
-    // Calculate responsive measurements
+    // Calculate responsive sizes
     final double titleFontSize = screenWidth * ShoppingHomeConfig.titleFontSizeRatio;
     final double sectionSpacing = screenHeight * ShoppingHomeConfig.sectionSpacingRatio;
     final double bottomSpacing = screenHeight * ShoppingHomeConfig.bottomSpacingRatio;
 
     return Scaffold(
       backgroundColor: ShoppingHomeConfig.backgroundColor,
-      appBar: const CustomAppBar(title: 'Shopping App',),
+      appBar: const CustomAppBar(title: 'shopping_app', actionButton: true),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Products Section Title
-            _buildSectionTitle('Our Products', titleFontSize),
-
-            // Products PageView
+            _buildSectionTitle('our_product', titleFontSize),
             _buildProductsPageView(screenHeight),
-
             SizedBox(height: sectionSpacing),
-
-            // Products Grid
             ProductGrid(
               productImages: productImages,
               productsNames: productsNames,
             ),
-
             SizedBox(height: sectionSpacing),
-
-            // Hot Offers Section Title
-            _buildSectionTitle('Hot Offers', titleFontSize),
-
-            // Hot Offers List
+            _buildSectionTitle('hot_offers', titleFontSize),
             HotOffers(
               offersImages: offersImages,
               offersNames: offersNames,
               offersValues: offersValues,
             ),
-
             SizedBox(height: bottomSpacing),
           ],
         ),
@@ -121,15 +121,12 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
     );
   }
 
-
-
-
-  // Helper method to build section titles
+  // Helper method to build section titles with translations
   Widget _buildSectionTitle(String title, double fontSize) {
     return Padding(
       padding: const EdgeInsets.all(ShoppingHomeConfig.sectionPadding),
       child: Text(
-        title,
+        title.tr(),  // Translate the title
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
@@ -139,7 +136,7 @@ class _ShoppingHomePageState extends State<ShoppingHomePage> {
     );
   }
 
-  // Helper method to build products PageView
+  // Helper method to build the products PageView
   Widget _buildProductsPageView(double screenHeight) {
     return SizedBox(
       height: screenHeight * ShoppingHomeConfig.pageViewHeightRatio,

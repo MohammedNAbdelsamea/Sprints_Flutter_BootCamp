@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/screens/shopping_home.dart';
+
+import 'package:shopping_app/screens/sign_up_page.dart';
 
 void main() async {
   // Initialize Flutter bindings
@@ -48,7 +49,7 @@ class _ShoppingAppState extends State<ShoppingApp> {
         primarySwatch: Colors.blue,
         fontFamily: 'Suwannaphum',
       ),
-      home: const ShoppingHomePage(),
+      home: const SignUpPage(),
     );
   }
 }

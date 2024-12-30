@@ -115,6 +115,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
       const CustomAppBar(
         title: 'Sign Up',
         showBackButton: false,
+        actionButton: false,
       ),
       // Wrap the body in AnimatedBuilder to rebuild when animation value changes
       body: AnimatedBuilder(
@@ -138,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Let\'s get started!',
+                    'Let\'s get started !',
                     style: TextStyle(
                       color: appBarColor,
                       fontSize: titleFontSize,

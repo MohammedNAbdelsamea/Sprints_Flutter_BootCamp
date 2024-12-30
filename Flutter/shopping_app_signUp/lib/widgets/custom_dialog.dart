@@ -1,6 +1,9 @@
 // widgets/custom_dialog.dart
 import 'package:flutter/material.dart';
 
+import '../screens/shopping_home.dart';
+import 'fade_page_route.dart';
+
 class CustomDialog extends StatelessWidget {
   final String title;
   final String message;
@@ -18,6 +21,7 @@ class CustomDialog extends StatelessWidget {
     this.iconColor = Colors.green,
     this.icon = Icons.check_circle,
   }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +85,8 @@ class CustomDialog extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: onPressed,
+                //onPressed:()=> _handleClose(context),
+                onPressed:onPressed,
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                     horizontal: padding.clamp(16.0, 24.0),

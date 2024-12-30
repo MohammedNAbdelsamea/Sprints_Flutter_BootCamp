@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
                 // Show add to cart notification
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: primaryColor,
+                    backgroundColor: Colors.green,
                     content: Text(
                       'Item added to the cart!',
                       style: TextStyle(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';// For responsive UI
 
 
 import '../models/user.dart';
@@ -11,10 +11,10 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  final UserService _userService = UserService();
-  List<User> _users = [];
-  bool _isLoading = false;
-  String _error = '';
+  final UserService _userService = UserService();  // Service for API calls
+  List<User> _users = [];                         // List to store users
+  bool _isLoading = false;                        // Loading state flag
+  String _error = '';                             // Error message storage
 
   Future<void> _fetchUsers() async {
     setState(() {
@@ -33,7 +33,7 @@ class _UserScreenState extends State<UserScreen> {
         _error = e.toString();
         _isLoading = false;
       });
-
+      // Show error message with retry option
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Failed to load users. Please try again.'),
@@ -68,7 +68,9 @@ class _UserScreenState extends State<UserScreen> {
               child: Text('Fetch Users'),
             ),
           ),
+          // Conditional rendering based on state
           if (_isLoading)
+          // Show loading indicator
             Center(child: CircularProgressIndicator())
           else if (_error.isNotEmpty)
             Center(
@@ -87,6 +89,7 @@ class _UserScreenState extends State<UserScreen> {
                 itemCount: _users.length,
                 itemBuilder: (context, index) {
                   final user = _users[index];
+                  // Card for each user
                   return Card(
                     margin: REdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     child: ExpansionTile(
@@ -95,22 +98,26 @@ class _UserScreenState extends State<UserScreen> {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                       ),
+                      // User basic info
                       title: Text(
                         user.name,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(user.email),
+                      // Expandable detailed information
                       children: [
                         Padding(
                           padding:  REdgeInsets.all(16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              // User details
                               Text('Username: ${user.username}'),
                               SizedBox(height: 8.h),
                               Text('Phone: ${user.phone}'),
                               Text('Website: ${user.website}'),
                               SizedBox(height: 8.h),
+                              // Address section
                               Text(
                                 'Address:',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -118,6 +125,7 @@ class _UserScreenState extends State<UserScreen> {
                               Text('${user.address.street}, ${user.address.suite}'),
                               Text('${user.address.city}, ${user.address.zipcode}'),
                               SizedBox(height: 8.h),
+                              // Company section
                               Text(
                                 'Company:',
                                 style: TextStyle(fontWeight: FontWeight.bold),

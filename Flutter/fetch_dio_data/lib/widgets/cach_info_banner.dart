@@ -10,7 +10,7 @@ class CacheInfoBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // If the cache status is null, return an empty widget
+
     return Container(
       padding: REdgeInsets.all(8),
       color: isFromCache ? Colors.green.shade100 : Colors.blue.shade100,

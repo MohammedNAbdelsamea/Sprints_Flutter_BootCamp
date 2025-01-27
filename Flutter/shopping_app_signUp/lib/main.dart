@@ -1,11 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/firebase_options.dart';
+import 'package:shopping_app/screens/login_page.dart';
 
-import 'package:shopping_app/screens/sign_up_page.dart';
 
-void main() async {
+
+Future <void> main() async {
   // Initialize Flutter bindings
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   // Initialize EasyLocalization
   await EasyLocalization.ensureInitialized();
 
@@ -49,7 +57,7 @@ class _ShoppingAppState extends State<ShoppingApp> {
         primarySwatch: Colors.blue,
         fontFamily: 'Suwannaphum',
       ),
-      home: const SignUpPage(),
+      home: const LoginPage(),
     );
   }
 }

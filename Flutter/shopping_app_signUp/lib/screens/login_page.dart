@@ -3,60 +3,52 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/const.dart';
 import 'package:shopping_app/screens/shopping_home.dart';
+import 'package:shopping_app/screens/sign_up_page.dart';
+
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
 
-// SignUpPage widget definition
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+// LoginPage widget definition
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   // Form key to validate the form fields
   final _formKey = GlobalKey<FormState>();
 
-  // Controllers for email, password, and confirm password input fields
+  // Controllers for email and password input fields
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     // Dispose of controllers to release resources when the widget is removed
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  // Sign-up function to handle Firebase user registration
-  Future<void> _signUp() async {
+  // Login function to handle Firebase authentication
+  Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
-      // Check if the password and confirm password fields match
-      if (_passwordController.text != _confirmPasswordController.text) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Passwords do not match')),
-        );
-        return;
-      }
-
       try {
-        // Attempt to create a new user with email and password
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        // Attempt to sign in with email and password
+        final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
 
         if (credential.user != null) {
-          // If registration is successful, show a success message
+          // If login is successful, show a success message
           if (!mounted) return;
 
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Account created successfully!')),
+            const SnackBar(content: Text('Login successful!')),
           );
 
           // Navigate to the ShoppingHomePage
@@ -69,10 +61,10 @@ class _SignUpPageState extends State<SignUpPage> {
         // Handle Firebase authentication errors
         String errorMessage = 'An error occurred';
 
-        if (e.code == 'weak-password') {
-          errorMessage = 'The password provided is too weak';
-        } else if (e.code == 'email-already-in-use') {
-          errorMessage = 'An account already exists for that email';
+        if (e.code == 'user-not-found') {
+          errorMessage = 'No user found for that email';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Wrong password provided';
         } else if (e.code == 'invalid-email') {
           errorMessage = 'Invalid email address';
         }
@@ -80,11 +72,6 @@ class _SignUpPageState extends State<SignUpPage> {
         // Show the error message in a snackbar
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage)),
-        );
-      } catch (e) {
-        // Handle any other exceptions
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
         );
       }
     }
@@ -101,10 +88,10 @@ class _SignUpPageState extends State<SignUpPage> {
     final buttonHeight = screenHeight * 0.08; // 8% of screen height
 
     return Scaffold(
-      // Custom app bar with a back button
+      // Custom app bar at the top
       appBar: const CustomAppBar(
-        title: 'Sign Up',
-        showBackButton: true,
+        title: 'Login',
+        showBackButton: false,
         actionButton: false,
       ),
       // SingleChildScrollView to handle overflow on smaller screens
@@ -121,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 // Title text
                 Text(
-                  'Create Account',
+                  'Welcome Back!',
                   style: TextStyle(
                     color: appBarColor,
                     fontSize: titleFontSize,
@@ -150,36 +137,27 @@ class _SignUpPageState extends State<SignUpPage> {
                   fieldType: 'password',
                   isPassword: true,
                 ),
-                SizedBox(height: verticalSpacing),
-
-                // Confirm password input field using CustomTextField widget
-                CustomTextField(
-                  labelText: 'Confirm Password',
-                  hintText: 'Confirm your password',
-                  prefixIcon: Icons.lock_outline,
-                  controller: _confirmPasswordController,
-                  fieldType: 'confirmPassword',
-                  isPassword: true,
-                  passwordController: _passwordController,
-                ),
                 SizedBox(height: verticalSpacing * 2),
 
-                // Sign-Up button using CustomButton widget
+                // Login button using CustomButton widget
                 CustomButton(
-                  text: 'Sign Up',
+                  text: 'Login',
                   fontSize: screenWidth * 0.04, // 4% of screen width
-                  onPressed: _signUp, // Call the sign-up function
+                  onPressed: _login, // Call the login function
                   height: buttonHeight,
                   width: screenWidth * 0.9, // 90% of screen width
                 ),
                 SizedBox(height: verticalSpacing),
 
-                // Back to Login button to navigate to the login page
+                // Sign Up button to navigate to SignUpPage
                 CustomButton(
-                  text: 'Back to Login',
+                  text: 'Sign Up',
                   fontSize: screenWidth * 0.04, // 4% of screen width
                   onPressed: () {
-                    Navigator.pop(context); // Go back to the previous screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpPage()),
+                    );
                   },
                   height: buttonHeight,
                   width: screenWidth * 0.9, // 90% of screen width

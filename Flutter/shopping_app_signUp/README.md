@@ -51,8 +51,7 @@ A responsive Flutter shopping application featuring secure user authentication, 
   - Proper disposal of animation controllers
   - Custom PageRouteBuilder for navigation transitions
 
-### Shopping Interface
-[... rest of existing shopping interface section ...]
+
 
 ### Design & User Experience
 - **Responsive Design**
@@ -106,3 +105,16 @@ A responsive Flutter shopping application featuring secure user authentication, 
   - Persistent language selection
   - Automatic UI direction adjustment
   - Smooth transition between languages
+
+### Firebase Configuration
+- Firebase is integrated into the app to handle user authentication.
+- Ensure the following Firebase services are enabled in your project:
+  - **Authentication**: Email/Password provider enabled.
+
+### Screenshots
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)

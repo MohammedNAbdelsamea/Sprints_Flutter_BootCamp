@@ -29,15 +29,15 @@ This Flutter application provides a simple way to retrieve and display device in
 # Android:
 - Optional permissions in AndroidManifest.xml:
 
-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+# <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
 # IOS:
 - Optional permissions in Info.plist:
-- <key>UIDeviceFamily</key>
-- <array>
--  <integer>1</integer>
--  <integer>2</integer>
--  </array>
+# <key>UIDeviceFamily</key>
+# <array>
+#  <integer>1</integer>
+#  <integer>2</integer>
+#  </array>
 
 ## Code Structure
 - lib/

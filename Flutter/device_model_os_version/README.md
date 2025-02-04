@@ -34,13 +34,13 @@ This Flutter application provides a simple way to retrieve and display device in
 # IOS:
 - Optional permissions in Info.plist:
 - <key>UIDeviceFamily</key>
-  <array>
-  <integer>1</integer>
-  <integer>2</integer>
-  </array>
+- <array>
+-  <integer>1</integer>
+-  <integer>2</integer>
+-  </array>
 
 ## Code Structure
-lib/
-│
-├── main.dart          # App entry point
-└── device_info.dart  # Device information page
+- lib/
+- │
+- ├── main.dart          # App entry point
+- └── device_info.dart  # Device information page

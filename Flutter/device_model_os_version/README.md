@@ -30,6 +30,7 @@ This Flutter application provides a simple way to retrieve and display device in
 - Optional permissions in AndroidManifest.xml:
 
 # <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+![img.png](img.png)
 
 # IOS:
 - Optional permissions in Info.plist:
@@ -38,7 +39,7 @@ This Flutter application provides a simple way to retrieve and display device in
 #  <integer>1</integer>
 #  <integer>2</integer>
 #  </array>
-
+![img_1.png](img_1.png)
 ## Code Structure
 - lib/
 - │

@@ -34,6 +34,19 @@ flutter pub get google_maps_flutter: ^2.10.0
 - Replace the value of android:value in the <meta-data> tag with your Google Maps API key:
 - <meta-data android:name="com.google.android.geo.API_KEY"android:value="YOUR_API_KEY_HERE"/>
 
+## Permissions:
+- Open the android/app/src/main/AndroidManifest.xml file.
+- Add the following permissions to the <manifest> tag:
+- <uses-permission android:name="android.permission.INTERNET"/>
+- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+## SDK Version:
+- Open the android/app/build.gradle file.
+- Set the compileSdkVersion and targetSdkVersion to 31 or higher:
+- compileSdkVersion 31 or higher
+
+
 ## Screenshots
 ![img_2.png](app_screen.png)
 

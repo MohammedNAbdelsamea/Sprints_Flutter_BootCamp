@@ -71,4 +71,3 @@ Add these dependencies to your `pubspec.yaml`:
 
 ## ScreenVideo
 - you can see the screen video from this path: audio_recorder_screen_record.rar
-- 

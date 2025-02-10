@@ -31,7 +31,11 @@ A builder class that facilitates the creation of User objects with:
 
 ### Creating a User with All Fields
 ```dart
-User user = UserBuilder('John', 'Doe')
-    .age(30)
-    .phone('123-456-7890')
+User user = UserBuilder('Mohamed', 'Nasser')
+    .age(23)
+    .phone('01150903601')
     .build();
+
+
+### Screenshots
+![alt text](image.png)

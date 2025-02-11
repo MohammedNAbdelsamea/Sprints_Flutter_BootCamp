@@ -37,13 +37,13 @@ class ShapeFactory {
     // Creates and returns appropriate shape based on input
   }
 }
-#### 4. Demo Class
+#### 4. RandomShape Class
 
 
-class ShapeDemo {
-  final ShapeFactory factory;
+class RandomShape {
+  final RandomShape factory;
   
-  ShapeDemo(this.factory);
+  RandomShape(this.factory);
   
   void printShape(String shapeType) {
     // Demonstrates shape creation and usage
